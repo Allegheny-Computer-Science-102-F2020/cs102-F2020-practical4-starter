@@ -1,0 +1,66 @@
+---
+name: cs102-F2020-practical4
+break: true
+indent: 4
+---
+
+# Learn more about GatorGrader and its supported checks by visiting this web site:
+# https://github.com/GatorEducator/gatorgrader
+
+# Explanation:
+# --> a check without an "--exact" runs a count for an entity as an "at least"
+# --> checks below a file in a specified directory are for that specific file and directory
+# --> checks that appear stand-alone are for an entire Git repository
+
+# --> check the Python program
+supercomputer/supercomputer/__main__.py:
+    ConfirmFileExists
+    MatchFileFragment --fragment "TODO" --count 0 --exact
+    MatchFileFragment --fragment "Argument(...)" --count 1 --exact
+    MatchFileFragment --fragment "run(main)" --count 1 --exact
+    MatchFileFragment --fragment "getattr(" --count 1 --exact
+    MatchFileFragment --fragment "map(" --count 1 --exact
+    MatchFileFragment --fragment "range(" --count 1 --exact
+    CountMultipleLineComments --language Python --count 2
+    CountSingleLineComments --language Python --count 4
+
+# --> check the Python program
+supercomputer/supercomputer/compute.py:
+    ConfirmFileExists
+    MatchFileFragment --fragment "TODO" --count 0 --exact
+    CountMultipleLineComments --language Python --count 2
+    CountSingleLineComments --language Python --count 7
+
+# --> check the Python program
+supercomputer/tests/test_compute.py:
+    ConfirmFileExists
+    MatchFileFragment --fragment "TODO" --count 0 --exact
+    CountMultipleLineComments --language Python --count 10
+
+# --> check the technical writing for various characteristics
+writing/reflection.md:
+    ConfirmFileExists
+    CountFileWords --count 400
+    CountMarkdownTags --tag "heading" --count 10 --exact
+    CountMarkdownTags --tag "code" --count 2
+    CountMarkdownTags --tag "code_block" --count 5 --exact
+    MatchFileFragment --fragment "TODO" --count 0 --exact
+    MatchFileFragment --fragment "Add Your Name Here" --count 0 --exact
+
+# --> check that the number of commits in the Git repository is beyond a threshold
+CountCommits --count 5
+
+# --> check that the program executes correctly and produces correct number of lines of output
+ExecuteCommand --command "cd supercomputer; poetry install; poetry run python supercomputer --start 1 --stop 10 square; cd .."
+
+# Output of the Python Program:
+#
+# Using a range of values between and inclusive 1 and an exclusive 10! 💻
+
+# The name of the function is square
+
+  # This is the output from the square function:
+
+  # [1, 4, 9, 16, 25, 36, 49, 64, 81]
+
+# Wow, computing with higher-order functions is fun! 😃
